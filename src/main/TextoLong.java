@@ -50,66 +50,120 @@ public class TextoLong {
 	}
 
 	public static long textoALong(String numeroTexto) throws NumberFormatException {
-		// Definir un mapa para mapear palabras a números
+
 		Map<String, Long> numeros = new HashMap<>();
+
 		numeros.put("cero", 0L);
+
 		numeros.put("uno", 1L);
+
 		numeros.put("dos", 2L);
+
 		numeros.put("tres", 3L);
+
 		numeros.put("cuatro", 4L);
+
 		numeros.put("cinco", 5L);
+
 		numeros.put("seis", 6L);
+
 		numeros.put("siete", 7L);
+
 		numeros.put("ocho", 8L);
+
 		numeros.put("nueve", 9L);
+
 		numeros.put("diez", 10L);
+
 		numeros.put("once", 11L);
+
 		numeros.put("doce", 12L);
+
 		numeros.put("trece", 13L);
+
 		numeros.put("catorce", 14L);
+
 		numeros.put("quince", 15L);
+
 		numeros.put("dieciséis", 16L);
+
 		numeros.put("diecisiete", 17L);
+
 		numeros.put("dieciocho", 18L);
+
 		numeros.put("diecinueve", 19L);
+
 		numeros.put("veinte", 20L);
+
 		numeros.put("treinta", 30L);
+
 		numeros.put("cuarenta", 40L);
+
 		numeros.put("cincuenta", 50L);
+
 		numeros.put("sesenta", 60L);
+
 		numeros.put("setenta", 70L);
+
 		numeros.put("ochenta", 80L);
+
 		numeros.put("noventa", 90L);
+
 		numeros.put("cien", 100L);
+
 		numeros.put("doscientos", 200L);
+
 		numeros.put("trescientos", 300L);
+
 		numeros.put("cuatrocientos", 400L);
+
 		numeros.put("quinientos", 500L);
+
 		numeros.put("seiscientos", 600L);
+
 		numeros.put("setecientos", 700L);
+
 		numeros.put("ochocientos", 800L);
+
 		numeros.put("novecientos", 900L);
+
 		numeros.put("mil", 1000L);
+
 		numeros.put("millón", 1000000L);
+
 		numeros.put("billón", 1000000000000L);
+
 		numeros.put("trillón", 1000000000000000L);
+
 		numeros.put("cuatrillón", 1000000000000000000L);
+
 		numeros.put("millones", 1000000L);
-		// Agregar más números compuestos si es necesario
 
 		String[] palabras = numeroTexto.split(" ");
 
 		long resultado = 0;
+
 		long parcial = 0;
+
 		boolean esNegativo = false;
+
 		for (String palabra : palabras) {
+
 			if (palabra.equals("menos")) {
+
 				esNegativo = true;
+
 				continue;
+
 			}
+
 			if (palabra.equals("y")) {
+
 				continue;
+
 			}
+
+			palabra = palabra.toLowerCase();
 
 			palabra = palabra.replace("á", "a");
 
@@ -126,33 +180,66 @@ public class TextoLong {
 			if (valor == null) {
 
 				if (palabra.startsWith("veinti")) {
+
 					String primeraParte = "veinte";
+
 					String segundaParte = palabra.substring(6); // El resto de la palabra después de "veinti"
+
 					long valorPrimeraParte = numeros.get(primeraParte);
+
 					long valorSegundaParte = numeros.get(segundaParte);
 
 					valor = valorPrimeraParte + valorSegundaParte;
-				} else {
-					throw new NumberFormatException("Palabra no reconocida: " + palabra);
+
 				}
+
+				else {
+
+					throw new NumberFormatException("Palabra no reconocida: " + palabra);
+
+				}
+
 			}
+
 			if (valor == 100) {
+
 				parcial *= 100;
-			} else if (valor == 1000) {
-				resultado += parcial * 1000;
-				parcial = 0;
-			} else if (valor == 1000000 || valor == 1000000000000L || valor == 1000000000000000L
-					|| valor == 1000000000000000000L) {
-				resultado *= valor;
-			} else {
-				parcial += valor;
+
 			}
+
+			else if (valor == 1000) {
+
+				resultado += parcial * 1000;
+
+				parcial = 0;
+
+			}
+
+			else if (valor == 1000000 || valor == 1000000000000L || valor == 1000000000000000L
+					|| valor == 1000000000000000000L) {
+
+				resultado *= valor;
+
+			}
+
+			else {
+
+				parcial += valor;
+
+			}
+
 		}
+
 		resultado += parcial;
+
 		if (esNegativo) {
+
 			resultado *= -1;
+
 		}
+
 		return resultado;
+
 	}
 
 	public TextoLong(int n) {
