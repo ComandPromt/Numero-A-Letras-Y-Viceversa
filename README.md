@@ -8,7 +8,7 @@
 
 ~~~java
 
-System.out.println(TextoLong.textoALong("menos doscientos veintidos"));
+System.out.println(TextoLong.textoALong("noventa y nueve"));
 
 ~~~
 
