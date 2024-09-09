@@ -56,7 +56,9 @@ public class TextoLong {
 	}
 
 	public static long textoALong(String numeroTexto) throws NumberFormatException {
-
+		
+		numeroTexto=numeroTexto.toLowerCase();
+		
 		Map<String, Long> numeros = new HashMap<>();
 
 		numeros.put("cero", 0L);
